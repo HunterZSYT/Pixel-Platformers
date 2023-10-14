@@ -12,6 +12,8 @@ Documenting Progress: Use comments in the code or a separate document to track t
 
 Versioning: Regularly commit changes to your GitHub repo with descriptive commit messages. This will not only help in tracking progress but also provide context if you share the commit history.
 
+Important Notes: Always review the uploaded files to ensure everything is consistent and then provide me with appropriately named files: main_game.py and player.py. After every Updates do not change file names to different file
+names.
 
 v1. Pixel Platformer
 
@@ -36,3 +38,13 @@ Updates: Integrated the jump method to allow the player to jump using the UP arr
 
 
 v3. 
+
+Key Updates:
+Platforms & Level Design: Add platforms that the player can stand on, jump between, and climb.
+Winning Condition: Define a point or area that, when reached by the player, displays the "You Won!" message.
+Obstacles: Introduce obstacles that the player must avoid or jump over.
+created the platform.py module which defines a Platform class. For now, platforms are represented as brown rectangles.
+mported the Platform class from the platform.py module.
+Created several platforms and added them to the game environment.
+Updated the game loop to handle player-platform collision detection, ensuring the player can stand on the platforms.
+
