@@ -1,6 +1,8 @@
 Coding with Ai
 
 
+After every project dont forget to mention key changes
+
 1. 
 
 Context Maintenance
@@ -47,4 +49,14 @@ created the platform.py module which defines a Platform class. For now, platform
 mported the Platform class from the platform.py module.
 Created several platforms and added them to the game environment.
 Updated the game loop to handle player-platform collision detection, ensuring the player can stand on the platforms.
+
+
+v.4
+Updates:
+
+Added a "winning platform" at the top of the screen.
+Updated the game loop to check if the player reaches this platform.
+If the player reaches the winning platform, a "You Won!" message is displayed at the center of the screen.
+
+
 
