@@ -11,7 +11,8 @@ pygame.init()
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 SKY_BLUE = (135, 206, 250)
-font = pygame.font.Font(None, 74)
+font_large = pygame.font.Font(None, 74)
+font_small = pygame.font.Font(None, 36)
 
 # Setup game screen and clock
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -26,9 +27,9 @@ all_sprites.add(player)
 # Create platforms
 platforms = pygame.sprite.Group()
 platform1 = Platform(100, 450, 200, 20)
-platform2 = Platform(400, 350, 200, 20)
+platform2 = Platform(400, 350, 200, 20, move_type="horizontal")
 platform3 = Platform(150, 250, 200, 20)
-winning_platform = Platform(350, 100, 100, 20)
+winning_platform = Platform(350, 50, 100, 20, move_type="vertical")
 
 # Add platforms to the sprite groups
 platforms.add(platform1, platform2, platform3, winning_platform)
@@ -36,9 +37,12 @@ all_sprites.add(platform1, platform2, platform3, winning_platform)
 
 # Create obstacles (spikes for now)
 obstacles = pygame.sprite.Group()
-obstacle1 = Obstacle(300, 430, 50, 20)
+obstacle1 = Obstacle(300, 430, 50, 20, move_type="horizontal")
 obstacles.add(obstacle1)
 all_sprites.add(obstacle1)
+
+# Score mechanics
+score = 0
 
 # Main game loop
 running = True
@@ -69,6 +73,8 @@ while running:
             player.rect.y = platform.rect.y - player.rect.height
             player.change_y = 0
             player.can_jump = True
+            player.jumps_done = 0  # Reset jumps count
+            score += 10  # Increase score for landing on platforms
 
     # Player-obstacle collision detection
     if pygame.sprite.spritecollide(player, obstacles, False):
@@ -84,11 +90,14 @@ while running:
     
     # Display messages
     if has_won:
-        win_text = font.render("You Won!", True, (255, 255, 255))
+        win_text = font_large.render("You Won!", True, (255, 255, 255))
         screen.blit(win_text, (SCREEN_WIDTH // 2 - 100, SCREEN_HEIGHT // 2 - 50))
     elif game_over:
-        game_over_text = font.render("Game Over", True, (255, 0, 0))
+        game_over_text = font_large.render("Game Over", True, (255, 0, 0))
         screen.blit(game_over_text, (SCREEN_WIDTH // 2 - 150, SCREEN_HEIGHT // 2 - 50))
+    else:
+        score_text = font_small.render(f"Score: {score}", True, (255, 255, 255))
+        screen.blit(score_text, (10, 10))
 
     pygame.display.flip()
     clock.tick(60)

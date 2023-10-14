@@ -1,38 +1,46 @@
 
 import pygame
 
+# Define constants
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
+
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
 
-        # Player sprite
-        self.image = pygame.Surface([50, 50])
-        self.image.fill((0, 128, 0))  # Green color for now
+        width = 40
+        height = 60
+        self.image = pygame.Surface([width, height])
+        self.image.fill((0, 128, 255))  # Blue color
+
         self.rect = self.image.get_rect()
+        self.rect.x = 50
+        self.rect.y = SCREEN_HEIGHT - height - 10  # Start near the bottom
 
-        # Starting position
-        self.rect.x = 375
-        self.rect.y = 500
-
-        # Speed and movement attributes
+        # Set speed vector
         self.change_x = 0
         self.change_y = 0
-        self.gravity = 0.5
-        self.jump_power = -15
+
+        # Define constants for player
+        self.gravity = 0.35
+        self.jump_strength = -10
         self.can_jump = True
+        self.jumps_done = 0  # To track double jumps
 
     def update(self):
-        # Apply gravity
+        # Gravity
         self.change_y += self.gravity
-
-        # Update position based on velocity
-        self.rect.x += self.change_x
         self.rect.y += self.change_y
 
-        # Temporary boundary conditions to keep player in the screen
-        if self.rect.y > 550:  
-            self.rect.y = 550
+        # Horizontal movement
+        self.rect.x += self.change_x
+
+        # Reset jump count if on the ground
+        if self.rect.y >= SCREEN_HEIGHT - self.rect.height - 10:
+            self.rect.y = SCREEN_HEIGHT - self.rect.height - 10
             self.can_jump = True
+            self.jumps_done = 0
 
     def go_left(self):
         self.change_x = -5
@@ -44,6 +52,8 @@ class Player(pygame.sprite.Sprite):
         self.change_x = 0
 
     def jump(self):
-        if self.can_jump:
-            self.change_y = self.jump_power
-            self.can_jump = False
+        if self.can_jump and self.jumps_done < 2:  # Allow for double jump
+            self.change_y = self.jump_strength
+            self.jumps_done += 1
+            if self.jumps_done == 2:
+                self.can_jump = False
