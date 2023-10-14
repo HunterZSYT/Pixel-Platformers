@@ -76,4 +76,9 @@ v.6
 
 Moving Platforms: Platforms that move horizontally or vertically have been added.
 Moving Obstacles: Obstacles that traverse the screen have been incorporated.
+<<<<<<< HEAD
 Score Mechanism: Players can now collect points for landing on platforms. The score is displayed on the top left corner of the screen.
+=======
+Score Mechanism: Players can now collect points for landing on platforms. The score is displayed on the top left corner of the screen.
+
+>>>>>>> 44283622e6bc23115ab28226220e4ff222a67237
