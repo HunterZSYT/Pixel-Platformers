@@ -71,3 +71,10 @@ Added an obstacle (represented as a red rectangle) to the game environment.
 Updated the game loop to check for player-obstacle collisions.
 If the player collides with an obstacle, a "Game Over" message is displayed on the screen.
 
+
+v.6
+
+Moving Platforms: Platforms that move horizontally or vertically have been added.
+Moving Obstacles: Obstacles that traverse the screen have been incorporated.
+Score Mechanism: Players can now collect points for landing on platforms. The score is displayed on the top left corner of the screen.
+
