@@ -5,24 +5,22 @@ from player import Player
 # Initialize pygame
 pygame.init()
 
-# Define screen dimensions
+# Define screen dimensions and colors
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
-
-# Colors
 SKY_BLUE = (135, 206, 250)
 
-# Set up the game screen and clock
+# Setup game screen and clock
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Pixel Platformer")
 clock = pygame.time.Clock()
 
-# Create the player object
+# Create the player and sprite groups
 player = Player()
 all_sprites = pygame.sprite.Group()
 all_sprites.add(player)
 
-# Game loop
+# Main game loop
 running = True
 while running:
     for event in pygame.event.get():
@@ -33,6 +31,8 @@ while running:
                 player.go_left()
             elif event.key == pygame.K_RIGHT:
                 player.go_right()
+            elif event.key == pygame.K_UP:
+                player.jump()
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
                 player.stop()
@@ -40,7 +40,7 @@ while running:
     # Update
     all_sprites.update()
 
-    # Draw
+    # Draw everything
     screen.fill(SKY_BLUE)
     all_sprites.draw(screen)
 
