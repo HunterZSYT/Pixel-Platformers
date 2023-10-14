@@ -1,0 +1,38 @@
+Coding with Ai
+
+
+1. 
+
+Context Maintenance
+To ensure I understand the context:
+
+Detailed Descriptions: Always start with a brief recap or a description of where we left off, especially if a new session starts.
+
+Documenting Progress: Use comments in the code or a separate document to track the current state of the project, planned features, and any issues. You can then share this document with me at the start of each session.
+
+Versioning: Regularly commit changes to your GitHub repo with descriptive commit messages. This will not only help in tracking progress but also provide context if you share the commit history.
+
+
+v1. Pixel Platformer
+
+main_game.py: The primary game script.
+player.py: A module for player-related functionalities.
+assets/: A directory for storing game assets.
+
+updates : Imported the Player class from the player.py module.
+Created a player object and added it to a sprite group.
+Updated the game loop to handle key events, making the player move left or right based on arrow key presses.
+
+
+v2. Pixel Platformer
+
+Key Updates:
+
+Added gravity to pull the player downwards.
+Implemented a jump method that allows the player to jump.
+Added a simple boundary condition to ensure the player doesn't fall off the screen. This will be enhanced later with actual platforms.
+
+Updates: Integrated the jump method to allow the player to jump using the UP arrow key.
+
+
+v3. 

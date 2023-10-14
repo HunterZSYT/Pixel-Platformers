@@ -1,6 +1,7 @@
 
 import pygame
 from player import Player
+from platform import Platform
 
 # Initialize pygame
 pygame.init()
@@ -19,6 +20,16 @@ clock = pygame.time.Clock()
 player = Player()
 all_sprites = pygame.sprite.Group()
 all_sprites.add(player)
+
+# Create platforms
+platforms = pygame.sprite.Group()
+platform1 = Platform(100, 450, 200, 20)
+platform2 = Platform(400, 350, 200, 20)
+platform3 = Platform(150, 250, 200, 20)
+
+# Add platforms to the sprite groups
+platforms.add(platform1, platform2, platform3)
+all_sprites.add(platform1, platform2, platform3)
 
 # Main game loop
 running = True
@@ -39,6 +50,14 @@ while running:
 
     # Update
     all_sprites.update()
+
+    # Player-platform collision detection
+    platform_hit_list = pygame.sprite.spritecollide(player, platforms, False)
+    for platform in platform_hit_list:
+        if player.change_y > 0:
+            player.rect.y = platform.rect.y - player.rect.height
+            player.change_y = 0
+            player.can_jump = True
 
     # Draw everything
     screen.fill(SKY_BLUE)
