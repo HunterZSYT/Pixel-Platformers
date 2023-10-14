@@ -2,6 +2,7 @@
 import pygame
 from player import Player
 from platform import Platform
+from obstacle import Obstacle
 
 # Initialize pygame
 pygame.init()
@@ -33,9 +34,16 @@ winning_platform = Platform(350, 100, 100, 20)
 platforms.add(platform1, platform2, platform3, winning_platform)
 all_sprites.add(platform1, platform2, platform3, winning_platform)
 
+# Create obstacles (spikes for now)
+obstacles = pygame.sprite.Group()
+obstacle1 = Obstacle(300, 430, 50, 20)
+obstacles.add(obstacle1)
+all_sprites.add(obstacle1)
+
 # Main game loop
 running = True
 has_won = False
+game_over = False
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -62,6 +70,10 @@ while running:
             player.change_y = 0
             player.can_jump = True
 
+    # Player-obstacle collision detection
+    if pygame.sprite.spritecollide(player, obstacles, False):
+        game_over = True
+
     # Check for winning condition
     if player.rect.colliderect(winning_platform.rect):
         has_won = True
@@ -70,10 +82,13 @@ while running:
     screen.fill(SKY_BLUE)
     all_sprites.draw(screen)
     
-    # Display winning message
+    # Display messages
     if has_won:
         win_text = font.render("You Won!", True, (255, 255, 255))
         screen.blit(win_text, (SCREEN_WIDTH // 2 - 100, SCREEN_HEIGHT // 2 - 50))
+    elif game_over:
+        game_over_text = font.render("Game Over", True, (255, 0, 0))
+        screen.blit(game_over_text, (SCREEN_WIDTH // 2 - 150, SCREEN_HEIGHT // 2 - 50))
 
     pygame.display.flip()
     clock.tick(60)
