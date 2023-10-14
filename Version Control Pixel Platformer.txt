@@ -1,6 +1,9 @@
 Coding with Ai
 
 
+After every project dont forget to mention key changes
+always show me the final project and final summeries to speed up the coding style.
+
 1. 
 
 Context Maintenance
@@ -47,4 +50,31 @@ created the platform.py module which defines a Platform class. For now, platform
 mported the Platform class from the platform.py module.
 Created several platforms and added them to the game environment.
 Updated the game loop to handle player-platform collision detection, ensuring the player can stand on the platforms.
+
+
+v.4
+Updates:
+
+Added a "winning platform" at the top of the screen.
+Updated the game loop to check if the player reaches this platform.
+If the player reaches the winning platform, a "You Won!" message is displayed at the center of the screen.
+
+v.5
+
+Create an Obstacle class (e.g., spikes).
+Update the main game script to incorporate these obstacles and handle player-obstacle interactions.
+Display a "Game Over" message if the player collides with an obstacle.
+Updates:
+
+Imported the Obstacle class from the obstacle.py module.
+Added an obstacle (represented as a red rectangle) to the game environment.
+Updated the game loop to check for player-obstacle collisions.
+If the player collides with an obstacle, a "Game Over" message is displayed on the screen.
+
+
+v.6
+
+Moving Platforms: Platforms that move horizontally or vertically have been added.
+Moving Obstacles: Obstacles that traverse the screen have been incorporated.
+Score Mechanism: Players can now collect points for landing on platforms. The score is displayed on the top left corner of the screen.
 
